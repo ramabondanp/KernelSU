@@ -317,7 +317,9 @@ bool is_manager_apk(char *path)
 #ifndef CONFIG_KSU_SUSFS
     return check_v2_signature(path, EXPECTED_SIZE, EXPECTED_HASH);
 #else
-    return (check_v2_signature(path, EXPECTED_SIZE, EXPECTED_HASH) ||
-            check_v2_signature(path, 384, "7e0c6d7278a3bb8e364e0fcba95afaf3666cf5ff3c245a3b63c8833bd0445cc4")); // 5ec1cff
+    return (check_v2_signature(path, EXPECTED_SIZE, EXPECTED_HASH)
+    || check_v2_signature(path, 384, "7e0c6d7278a3bb8e364e0fcba95afaf3666cf5ff3c245a3b63c8833bd0445cc4") // 5ec1cff/KernelSU
+    || check_v2_signature(path, 0x33b, "c371061b19d8c7d7d6133c6a9bafe198fa944e50c1b31c9d8daa8d7f1fc2d2d6") // official KernelSU
+    );
 #endif // #ifndef CONFIG_KSU_SUSFS
 }
